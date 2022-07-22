@@ -15,9 +15,13 @@ def hello_name(request, name):
 def calcular_nacimiento(request, edad):
 
     anio_actual = 2022
-    anio_nacimiento = anio_actual - int(edad)
+    anio_nacimiento = anio_actual - edad
 
     return HttpResponse(f"Ud. ha nacido en el anio {anio_nacimiento}")
+
+def calcular_nacimiento_2(request, edad):
+
+    return HttpResponse(f"Ud. ha  indicado un mensaje no válido {edad}")
 
 # Templates
 def inicio(request):
