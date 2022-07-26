@@ -17,11 +17,13 @@ from django.contrib import admin
 from django.urls import path
 from mi_proyecto.views import index, notas, alumnos
 from aplicacion.views import lista_cursos
+from familiares.views import mi_familia
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('notas/', notas),
     path('alumnos/', alumnos),
     path('cursos/', lista_cursos),
+    path('familia/', mi_familia),
     path('<str:nombre>/', index),
 ]
