@@ -1,39 +1,40 @@
 from django.http import HttpResponse
-from django.template import Template, Context
+from django.template import Template, Context, loader
 from datetime import datetime
 
-def hello(request):
-    return HttpResponse("Hello")
-
-def hora_actual(request):
-    hora = datetime.now()
-    return HttpResponse(f"<h1>{hora}</h1>")
-
-def hello_name(request, name):
-    return HttpResponse(f"Hola {name}")
-
-def calcular_nacimiento(request, edad):
-
-    anio_actual = 2022
-    anio_nacimiento = anio_actual - edad
-
-    return HttpResponse(f"Ud. ha nacido en el anio {anio_nacimiento}")
-
-def calcular_nacimiento_2(request, edad):
-
-    return HttpResponse(f"Ud. ha  indicado un mensaje no válido {edad}")
-
 # Templates
-def inicio(request):
+def index(request, nombre):
+
+    datos={"fecha_actual": datetime.now(), "usuario": nombre}
+
     template = open(r"C:\Users\Administrator\Desktop\Curso Python\proyectoPython\mi_proyecto\mi_proyecto\templates\index.html", "r")
     plantilla = Template(template.read())
     template.close()
 
     # Contexto
-    context = Context()
+    context = Context(datos)
 
     # Respuesta
     documento = plantilla.render(context)
 
     # Retornarlo
+    return HttpResponse(documento)
+
+def notas(request):
+
+    datos = {"notas": [9, 4, 2, 7, 10], "estudiante": "Meli"}
+
+    plantilla = loader.get_template("notas.html")
+
+    documento = plantilla.render(datos)
+
+    return HttpResponse(documento)
+
+def alumnos (request):
+    datos = {"curso": "Python", "alumnos": ["Meli", "Rodri", "Minnie"]}
+
+    plantilla = loader.get_template("alumnos.html")
+
+    documento = plantilla.render(datos)
+    
     return HttpResponse(documento)
