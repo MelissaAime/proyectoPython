@@ -7,21 +7,19 @@ from familiares.models import Familia
 def mi_familia(request):
     familia = Familia.objects.all()
 
-    template = open(r"C:\Users\Administrator\Desktop\Curso Python\proyectoPython\mi_proyecto\mi_proyecto\templates\familiares.html", "r")
-    plantilla = Template(template.read())
-    template.close()
-
-    context = Context(familia)
-
-    documento = plantilla.render(context)
-
-    return HttpResponse(documento)
-
-
-#solo muestra los nombres uno al lado del otro
-    # listado = []
+# Sin conexion con el template
+    # listado_nombres= []
 
     # for f in familia:
-    #     listado.append(f.nombre)
+    #     listado_nombres.append(f"Familiar: {f.id}, Nombre: {f.nombre}, Edad: {f.edad}, Parentezco: {f.parentezco}, ")
 
-    # return HttpResponse(listado)
+    # return HttpResponse(listado_nombres)
+
+
+# Conectando con el template, no funciona:
+        
+    plantilla = loader.get_template("familiares.html")
+
+    documento = plantilla.render({"familia": familia})
+
+    return HttpResponse(documento)
