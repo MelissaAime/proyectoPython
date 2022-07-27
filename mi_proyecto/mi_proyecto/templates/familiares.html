@@ -9,10 +9,25 @@
 <body>
     <h1>Familiares</h1>
 
-    {% for f in mi_familia %}
-        <p>Nombre: {{f.nombre}}</p>
-        <!-- <p>Edad: {{f.edad}}</p> -->
-    {% endfor %} 
+    <table border="1">
+        <tr>
+            <th>Nombre</th>
+            <th>Edad</th>
+            <th>Parentezco</th>
+            <th>Fecha de nacimiento</th>
+        </tr>
+
+        {% for f in familia %}
+        <tr>
+            <td> {{f.nombre}} </td>
+            <td> {{f.edad}} </td>
+            <td> {{f.parentezco}} </td>
+            <td> {{f.fecha_nac}} </td>
+        </tr>
+        {% endfor %} 
+
+    </table>
+
     
 </body>
 </html>
