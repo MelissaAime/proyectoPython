@@ -1,0 +1,15 @@
+{% extends 'aplicacion/base.html' %}
+
+
+{% block contenido %}
+    <p>Hola</p>
+
+    {% for curso in cursos %}
+        <p>{{curso.nombre}} 
+            <a href="{% url 'borrar_curso' curso.id %}">Borrar</a> 
+        </p>
+        
+    {% endfor %}
+
+
+{% endblock %}
